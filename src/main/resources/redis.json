@@ -1,0 +1,16 @@
+[
+	{
+		"name": "blog",
+		"server": [{
+			"ip": "192.168.5.29",
+			"port": "22333"
+		}],
+		"max_total": 100,
+		"max_idle": 20,
+		"min_idle": 10,
+		"max_wait_millis": 10000,
+		"test_on_borrow": true,
+		"test_on_return": true,
+		"password":"whosyourdaddy"
+	}
+]

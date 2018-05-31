@@ -1,2 +1,10 @@
 eclipse.preferences.version=1
+encoding//src/main/resources/application-local.properties=UTF-8
+encoding//src/main/resources/application-pro.properties=UTF-8
+encoding//src/main/resources/application-test.properties=UTF-8
+encoding//src/main/resources/application.properties=UTF-8
+encoding//src/main/resources/conf.properties=UTF-8
+encoding//src/main/resources/log4j.properties=UTF-8
+encoding//src/main/resources/readme.txt=UTF-8
+encoding//src/main/resources/redis.json=UTF-8
 encoding/<project>=UTF-8

@@ -1,7 +1,9 @@
 package cn.com.insurance.blog.service.impl;
 
-import cn.com.insurance.blog.service.BlogService;
+import org.springframework.stereotype.Service;
 
+import cn.com.insurance.blog.service.BlogService;
+@Service("blogService")
 public class BlogServiceImpl implements BlogService {
 
 	@Override
