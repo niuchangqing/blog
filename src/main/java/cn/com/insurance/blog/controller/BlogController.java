@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import cn.com.insurance.blog.model.AjaxObject;
+import cn.com.insurance.blog.model.BlogModel;
 import cn.com.insurance.blog.service.BlogService;
 
 @Controller
@@ -42,8 +43,12 @@ public class BlogController {
 
 	@RequestMapping(value = "/query/blog/list", method = { RequestMethod.POST, RequestMethod.GET })
 	@ResponseBody
-	public void queryBlogList(HttpServletRequest request) {
-
+	public AjaxObject queryBlogList(HttpServletRequest request) {
+		BlogModel model = new BlogModel();
+		model.setId(100L);
+		model.setTitle("hello");
+		model.setBody("text");
+		return new AjaxObject(model);
 	}
 
 	@RequestMapping(value = "/query/blog", method = { RequestMethod.POST, RequestMethod.GET })
