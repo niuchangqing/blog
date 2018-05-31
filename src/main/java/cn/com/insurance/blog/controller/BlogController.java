@@ -34,8 +34,8 @@ public class BlogController {
 	public AjaxObject edit(HttpServletRequest request) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("name", "niucqing");
-		map.put("age", 18);
-		return new AjaxObject(200, "success", map);
+		map.put("age", 20);
+		return new AjaxObject(map);
 	}
 
 	@RequestMapping(value = "/query/blog/list", method = { RequestMethod.POST, RequestMethod.GET })

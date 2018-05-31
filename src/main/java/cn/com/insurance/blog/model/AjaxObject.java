@@ -8,6 +8,12 @@ public class AjaxObject {
 	public AjaxObject() {
 
 	}
+	
+	public AjaxObject(Object data) {
+		this.retCode = 200;
+		this.retMsg = "success";
+		this.data = data;
+	}
 
 	public AjaxObject(Integer retCode, String retMsg, Object data) {
 		this.retCode = retCode;
