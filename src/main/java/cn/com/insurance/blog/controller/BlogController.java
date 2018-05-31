@@ -25,8 +25,10 @@ public class BlogController {
 
 	@RequestMapping(value = "/save", method = { RequestMethod.POST, RequestMethod.GET })
 	@ResponseBody
-	public void save(HttpServletRequest request) {
-
+	public AjaxObject save(HttpServletRequest request) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("type", "save");
+		return new AjaxObject(map);
 	}
 
 	@RequestMapping(value = "/edit", method = { RequestMethod.POST, RequestMethod.GET })
