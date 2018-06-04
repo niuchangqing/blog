@@ -18,9 +18,9 @@ import com.alibaba.druid.pool.DruidDataSource;
 
 @Configuration // 该注解类似于spring配置文件
 @MapperScan(basePackages = "cn.com.insurance.blog.main.mapper")
-public class MyBatisConfig implements EnvironmentAware {
+public class DruidDataSourceConfiguration implements EnvironmentAware {
 
-	private Logger logger = LoggerFactory.getLogger(MyBatisConfig.class);
+	private Logger logger = LoggerFactory.getLogger(DruidDataSourceConfiguration.class);
 
 	private Environment env;
 
