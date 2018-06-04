@@ -13,10 +13,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import cn.com.insurance.blog.common.RedisFactory;
+import cn.com.insurance.blog.common.JedisProxy;
 import cn.com.insurance.blog.model.AjaxObject;
 import cn.com.insurance.blog.model.BlogModel;
 import cn.com.insurance.blog.service.BlogService;
+import redis.clients.jedis.Jedis;
 
 @Controller
 @RequestMapping(value = "/blog")
@@ -26,10 +27,12 @@ public class BlogController {
 	@Autowired
 	private BlogService blogService;
 
+	private Jedis jedis = JedisProxy.createProxy();
+
 	@RequestMapping(value = "/save", method = { RequestMethod.POST, RequestMethod.GET })
 	@ResponseBody
 	public AjaxObject save(HttpServletRequest request) {
-		Map<String, String> map = RedisFactory.getProxy().hgetAll("red_packets_config_yellowbox");
+		Map<String, String> map = jedis.hgetAll("red_packets_config_yellowbox");
 		return new AjaxObject(map);
 	}
 

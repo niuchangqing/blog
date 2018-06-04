@@ -32,7 +32,6 @@ public class BlogServiceImpl implements BlogService {
 	}
 
 	@Override
-	@Transactional(readOnly = true)
 	public void queryBlogById() {
 		// TODO Auto-generated method stub
 		List<BottomBar> list = bottomBarMapper.selectAll();
