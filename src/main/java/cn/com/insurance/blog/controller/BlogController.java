@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import cn.com.insurance.blog.common.RedisFactory;
 import cn.com.insurance.blog.model.AjaxObject;
 import cn.com.insurance.blog.model.BlogModel;
 import cn.com.insurance.blog.service.BlogService;
@@ -21,14 +22,14 @@ import cn.com.insurance.blog.service.BlogService;
 @RequestMapping(value = "/blog")
 public class BlogController {
 	private static final Logger logger = LoggerFactory.getLogger(BlogController.class);
+
 	@Autowired
 	private BlogService blogService;
 
 	@RequestMapping(value = "/save", method = { RequestMethod.POST, RequestMethod.GET })
 	@ResponseBody
 	public AjaxObject save(HttpServletRequest request) {
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("type", "save");
+		Map<String, String> map = RedisFactory.getProxy().hgetAll("red_packets_config_yellowbox");
 		return new AjaxObject(map);
 	}
 
@@ -54,7 +55,7 @@ public class BlogController {
 	@RequestMapping(value = "/query/blog", method = { RequestMethod.POST, RequestMethod.GET })
 	@ResponseBody
 	public void queryBlogById(HttpServletRequest request) {
-
+		blogService.queryBlogById();
 	}
 
 }

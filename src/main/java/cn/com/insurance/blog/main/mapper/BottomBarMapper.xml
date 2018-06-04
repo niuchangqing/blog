@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.com.insurance.blog.main.mapper.BottomBarMapper">
+  <resultMap id="BaseResultMap" type="cn.com.insurance.blog.main.po.BottomBar">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="link" jdbcType="VARCHAR" property="link" />
+    <result column="size" jdbcType="TINYINT" property="size" />
+    <result column="start_date" jdbcType="TIMESTAMP" property="startDate" />
+    <result column="end_date" jdbcType="TIMESTAMP" property="endDate" />
+    <result column="word_before_selection" jdbcType="VARCHAR" property="wordBeforeSelection" />
+    <result column="word_after_selection" jdbcType="VARCHAR" property="wordAfterSelection" />
+    <result column="background_color" jdbcType="VARCHAR" property="backgroundColor" />
+    <result column="platform" jdbcType="VARCHAR" property="platform" />
+    <result column="creator" jdbcType="VARCHAR" property="creator" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="modify" jdbcType="VARCHAR" property="modify" />
+    <result column="modify_date" jdbcType="TIMESTAMP" property="modifyDate" />
+    <result column="is_del" jdbcType="TINYINT" property="isDel" />
+  </resultMap>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select *
+    from t_bottom_bar
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  
+  <select id="selectAll" resultMap="BaseResultMap">
+    select * from t_bottom_bar
+  </select>
+  
+  <select id="queryCount" resultType="java.lang.Integer">
+  	select count(1) from t_bottom_bar where is_del = 0
+  </select>
+  
+  <select id="queryList" resultMap="BaseResultMap" >
+	SELECT
+		 *
+	FROM
+		t_bottom_bar t
+	WHERE
+		1=1
+		<if test="id != null and id != ''" >
+		 and t.id = #{id} 
+		</if>
+		<if test="name != null and name != ''" >
+		 and t.name like concat('%',#{name},'%') 
+		</if>
+		<if test="creator != null and creator != ''" >
+		 and t.creator like concat('%',#{creator},'%')
+		</if>
+		and is_del = 0
+		ORDER BY t.id desc
+		LIMIT #{offset}, #{pageSize}
+	</select>
+	
+	<select id="queryEffectiveId" resultType="java.lang.Long" >
+		select MAX(id) from t_bottom_bar where is_del = 0 and <![CDATA[ start_date < now() and end_date > now()]]>
+	</select>
+	
+	<select id="queryInvalid" resultType="java.lang.Long">
+    	select id from t_bottom_bar where is_del = 1 or <![CDATA[ end_date < now()]]>
+  	</select>
+</mapper>
